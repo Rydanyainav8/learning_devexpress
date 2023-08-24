@@ -12,4 +12,11 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="C:\Users\arakotondravao\.nuget\packages\" />
   </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)devexpress.blazor.themes\23.1.4\buildTransitive\DevExpress.Blazor.Themes.props" Condition="Exists('$(NuGetPackageRoot)devexpress.blazor.themes\23.1.4\buildTransitive\DevExpress.Blazor.Themes.props')" />
+    <Import Project="$(NuGetPackageRoot)devexpress.blazor\23.1.4\buildTransitive\net5.0\DevExpress.Blazor.props" Condition="Exists('$(NuGetPackageRoot)devexpress.blazor\23.1.4\buildTransitive\net5.0\DevExpress.Blazor.props')" />
+  </ImportGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgDevExpress_Data Condition=" '$(PkgDevExpress_Data)' == '' ">C:\Users\arakotondravao\.nuget\packages\devexpress.data\23.1.4</PkgDevExpress_Data>
+  </PropertyGroup>
 </Project>

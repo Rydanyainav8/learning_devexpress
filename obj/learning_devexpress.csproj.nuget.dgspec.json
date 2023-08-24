@@ -22,7 +22,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.devexpress.com/lIAvOQg9Xp91vMJvQucqXSFdHSSdLkOtaDlZSwqTuri8WtjYaN/api": {}
         },
         "frameworks": {
           "net6.0": {
@@ -39,6 +40,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "DevExpress.Blazor": {
+              "target": "Package",
+              "version": "[23.1.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

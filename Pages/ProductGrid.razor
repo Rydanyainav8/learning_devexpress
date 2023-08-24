@@ -1,0 +1,28 @@
+﻿@page "/productgrid"
+@using learning_devexpress.Data
+@inject ProductDataService ProductService 
+
+<h3>ProductGrid</h3>
+
+@*<DxButton Id="showDDbutton" Click="() => IsOpen = true">Show DropDown</DxButton>
+<DxDropDown @bind-IsOpen="@IsOpen"
+            Width="400"
+            HeaderVisible="true"
+            FooterVisible="true"
+            HeaderText="Header"
+            BodyText="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sit amet metus vel
+             nisi blandit tincidunt vel efficitur purus. Nunc nec turpis tempus, accumsan orci auctor,
+             imperdiet mauris. Fusce id purus magna."
+            FooterText="Footer">
+</DxDropDown>
+@code {
+    bool IsOpen { get; set; } = false;
+}*@
+
+<DxDataGrid DataAsync="@ProductService.ProductList" PageSize="5" ShowFilterRow="false">
+    <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
+    <DxDataGridColumn Field="@nameof(Product.ProductId)" Caption="ID" Width="150px" AllowSort="true"></DxDataGridColumn>
+    <DxDataGridColumn Field="@nameof(Product.ProductName)" Caption="Name" Width="150px"></DxDataGridColumn>
+    <DxDataGridColumn Field="@nameof(Product.ProdQty)" Caption="Qty" Width="150px"></DxDataGridColumn>
+    <DxDataGridColumn Field="@nameof(Product.Price)" Caption="Price" Width="150px"></DxDataGridColumn>
+</DxDataGrid>
