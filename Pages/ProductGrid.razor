@@ -1,6 +1,7 @@
 ﻿@page "/productgrid"
 @using learning_devexpress.Data
 @inject ProductDataService ProductService 
+@*@using System.Collections.Generic*@ 
 
 <h3>ProductGrid</h3>
 
@@ -19,10 +20,29 @@
     bool IsOpen { get; set; } = false;
 }*@
 
-<DxDataGrid DataAsync="@ProductService.ProductList" PageSize="5" ShowFilterRow="false">
+<DxDataGrid DataAsync="@ProductService.ProductList" ShowFilterRow="false"
+            RowInsertingAsync="@OnRowInserting"
+            RowUpdatingAsync="@OnRowUpdating"
+            RowRemovingAsync="@OnRowRemoving"
+            >
     <DxDataGridCommandColumn Width="150px"></DxDataGridCommandColumn>
     <DxDataGridColumn Field="@nameof(Product.ProductId)" Caption="ID" Width="150px" AllowSort="true"></DxDataGridColumn>
     <DxDataGridColumn Field="@nameof(Product.ProductName)" Caption="Name" Width="150px"></DxDataGridColumn>
     <DxDataGridColumn Field="@nameof(Product.ProdQty)" Caption="Qty" Width="150px"></DxDataGridColumn>
     <DxDataGridColumn Field="@nameof(Product.Price)" Caption="Price" Width="150px"></DxDataGridColumn>
 </DxDataGrid>
+
+@code {
+    async Task OnRowInserting(IDictionary<string, object> newValue)
+    {
+        await ProductService.Insert(newValue);
+    }
+    async Task OnRowUpdating(Product dataItem, IDictionary<string, object> newValue)
+    {
+        await ProductService.Update(dataItem, newValue);
+    }
+    async Task OnRowRemoving(Product dataItem)
+    {
+        await ProductService.Remove(dataItem);
+    }
+}
